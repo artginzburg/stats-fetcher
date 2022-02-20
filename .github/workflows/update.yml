@@ -20,6 +20,11 @@ jobs:
         env:
           PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
       - name: Commit changes
         run: git commit -a -m "Update stats"
 
