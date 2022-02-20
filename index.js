@@ -3,6 +3,7 @@ const fs = require('fs');
 
 const wakatime = require('./sources/wakatime');
 const getUserDownloads = require('@artginzburg/github-user-downloads');
+const getMaintainerDownloads = require('@artginzburg/npmstalk');
 
 const config = require('./config');
 
@@ -22,12 +23,22 @@ function getInitialData(path, valueIfEmpty) {
 
 async function refreshData(currentData) {
   const data = currentData;
+
   console.log('Fetching Wakatime stats...');
   data.wakatimeMinutes = (await wakatime(config.wakatime)) ?? data.wakatimeMinutes;
   console.log('Wakatime stats loaded!');
+
   console.log('Fetching GitHub downloads stats...');
-  data.githubDownloads = (await getUserDownloads(config.github.username, PERSONAL_ACCESS_TOKEN))?.total ?? data.githubDownloads;
+  data.githubDownloads =
+    (await getUserDownloads(config.github.username, PERSONAL_ACCESS_TOKEN))?.total ??
+    data.githubDownloads;
   console.log('GitHub downloads loaded!');
+
+  console.log('Fetching NPM downloads stats...');
+  data.npmDownloads =
+    (await getMaintainerDownloads(config.github.username))?.total ?? data.npmDownloads;
+  console.log('NPM downloads loaded!');
+
   return data;
 }
 
