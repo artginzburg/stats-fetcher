@@ -13,6 +13,10 @@
     "start": "node index"
   },
   "dependencies": {
+    "@artginzburg/github-user-downloads": "^0.4.0",
     "got": "^11.8.2"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0"
   }
 }
