@@ -10,7 +10,8 @@
   "repository": "https://github.com/artginzburg/stats-fetcher",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index"
+    "start": "node test",
+    "update": "node index"
   },
   "dependencies": {
     "@artginzburg/github-user-downloads": "^0.4.0",
