@@ -13,4 +13,4 @@ jobs:
         run: npm i --production
 
       - name: Run test
-      - run: npm start
+        run: npm start
