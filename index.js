@@ -1,8 +1,8 @@
 const fs = require('fs');
 
-const wakatime = require('./sources/wakatime');
 const getUserDownloads = require('@artginzburg/github-user-downloads');
 const getMaintainerDownloads = require('@artginzburg/npmstalk');
+const wakatime = require('./sources/wakatime');
 
 const config = require('./config');
 
@@ -11,6 +11,7 @@ const { PERSONAL_ACCESS_TOKEN } = process.env;
 function getInitialData(path, valueIfEmpty) {
   let data;
   try {
+    // eslint-disable-next-line import/no-dynamic-require, global-require
     data = require(path);
   } catch (e) {
     if (e instanceof Error && e.code === 'MODULE_NOT_FOUND') {
@@ -23,20 +24,27 @@ function getInitialData(path, valueIfEmpty) {
 async function refreshData(currentData) {
   const data = currentData;
 
-  console.log('Fetching Wakatime stats...');
-  data.wakatimeMinutes = (await wakatime(config.wakatime)) ?? data.wakatimeMinutes;
-  console.log('Wakatime stats loaded!');
+  const [
+    githubDownloads,
+    wakatimeMinutes,
+    npmDownloads,
+  ] = await Promise.all([
+    getUserDownloads(config.github.username, PERSONAL_ACCESS_TOKEN),
+    wakatime(config.wakatime),
+    getMaintainerDownloads(config.github.username),
+  ]);
 
-  console.log('Fetching GitHub downloads stats...');
-  data.githubDownloads =
-    (await getUserDownloads(config.github.username, PERSONAL_ACCESS_TOKEN))?.total ??
-    data.githubDownloads;
-  console.log('GitHub downloads loaded!');
+  if (githubDownloads?.total) {
+    data.githubDownloads = githubDownloads.total;
+  }
 
-  console.log('Fetching NPM downloads stats...');
-  data.npmDownloads =
-    (await getMaintainerDownloads(config.github.username))?.total ?? data.npmDownloads;
-  console.log('NPM downloads loaded!');
+  if (wakatimeMinutes) {
+    data.wakatimeMinutes = wakatimeMinutes;
+  }
+
+  if (npmDownloads?.total) {
+    data.npmDownloads = npmDownloads.total;
+  }
 
   return data;
 }
@@ -45,10 +53,10 @@ function writeData(file, data) {
   fs.writeFileSync(file, JSON.stringify(data));
 }
 
-async function updateData(path) {
+module.exports = async function updateData(path) {
   let data = getInitialData(path, {});
   data = await refreshData(data);
   writeData(path, data);
-}
+};
 
-updateData('./data.json');
+// updateData('./data.json');

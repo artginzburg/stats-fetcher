@@ -1,2 +1,4 @@
 require('dotenv').config();
-require('./');
+
+console.time();
+require('.')('data.json').then(console.timeEnd);

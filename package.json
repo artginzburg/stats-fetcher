@@ -11,7 +11,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node test",
-    "update": "node index"
+    "update": "node update",
+    "lint": "eslint . --fix"
   },
   "dependencies": {
     "@artginzburg/github-user-downloads": "^0.4.0",
@@ -19,6 +20,9 @@
     "got": "^11.8.2"
   },
   "devDependencies": {
-    "dotenv": "^16.0.0"
+    "dotenv": "^16.0.0",
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4"
   }
 }
