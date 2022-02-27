@@ -1,25 +1,13 @@
-const fs = require('fs');
+import { writeFileSync } from 'fs';
 
-const getUserDownloads = require('@artginzburg/github-user-downloads');
-const getMaintainerDownloads = require('@artginzburg/npmstalk');
-const wakatime = require('./sources/wakatime');
+import getUserDownloads from '@artginzburg/github-user-downloads';
+import getMaintainerDownloads from '@artginzburg/npmstalk';
+import getWakatimeMinutes from './sources/wakatime';
+import dataJson from './data.json';
 
-const config = require('./config');
+import { github, wakatime } from './config';
 
 const { PERSONAL_ACCESS_TOKEN } = process.env;
-
-function getInitialData(path, valueIfEmpty) {
-  let data;
-  try {
-    // eslint-disable-next-line import/no-dynamic-require, global-require
-    data = require(path);
-  } catch (e) {
-    if (e instanceof Error && e.code === 'MODULE_NOT_FOUND') {
-      data = valueIfEmpty;
-    } else throw e;
-  }
-  return data;
-}
 
 async function refreshData(currentData) {
   const data = currentData;
@@ -29,9 +17,9 @@ async function refreshData(currentData) {
     wakatimeMinutes,
     npmDownloads,
   ] = await Promise.all([
-    getUserDownloads(config.github.username, PERSONAL_ACCESS_TOKEN),
-    wakatime(config.wakatime),
-    getMaintainerDownloads(config.github.username),
+    getUserDownloads(github.username, PERSONAL_ACCESS_TOKEN),
+    getWakatimeMinutes(wakatime),
+    getMaintainerDownloads(github.username),
   ]);
 
   if (githubDownloads?.total) {
@@ -50,13 +38,11 @@ async function refreshData(currentData) {
 }
 
 function writeData(file, data) {
-  fs.writeFileSync(file, JSON.stringify(data));
+  writeFileSync(file, JSON.stringify(data));
 }
 
-module.exports = async function updateData(path) {
-  let data = getInitialData(path, {});
+export default async function updateData(path) {
+  let data = dataJson;
   data = await refreshData(data);
   writeData(path, data);
-};
-
-// updateData('./data.json');
+}

@@ -1,4 +1,4 @@
-const got = require('got');
+import got from 'got';
 
 async function wakatime(url) {
   const svg = await got(url);
@@ -6,4 +6,4 @@ async function wakatime(url) {
   return Number(match.hours) * 60 + Number(match.minutes);
 }
 
-module.exports = wakatime;
+export default wakatime;

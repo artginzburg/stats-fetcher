@@ -1,4 +1,6 @@
-require('dotenv').config();
+/* eslint-disable no-console */
+import 'dotenv/config';
+import updateData from '.';
 
 console.time();
-require('.')('data.json').then(console.timeEnd);
+updateData('data.json').then(console.timeEnd);

@@ -7,11 +7,15 @@
     "email": "art.ginzburg@ya.ru",
     "url": "https://ginzburg.art"
   },
+  "type": "module",
+  "engines": {
+    "node": ">=12"
+  },
   "repository": "https://github.com/artginzburg/stats-fetcher",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node test",
-    "update": "node update",
+    "start": "node --experimental-specifier-resolution=node test",
+    "update": "node --no-warnings --experimental-specifier-resolution=node update",
     "lint": "eslint . --fix"
   },
   "dependencies": {

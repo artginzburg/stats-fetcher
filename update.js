@@ -1,1 +1,3 @@
-require('.')('data.json');
+import updateData from '.';
+
+updateData('data.json');
