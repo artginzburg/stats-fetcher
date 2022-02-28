@@ -7,8 +7,6 @@ import dataJson from './data.json';
 
 import { github, wakatime } from './config';
 
-const { PERSONAL_ACCESS_TOKEN } = process.env;
-
 async function refreshData(currentData) {
   const data = currentData;
 
@@ -17,7 +15,7 @@ async function refreshData(currentData) {
     wakatimeMinutes,
     npmDownloads,
   ] = await Promise.all([
-    getUserDownloads(github.username, PERSONAL_ACCESS_TOKEN),
+    getUserDownloads(github.username),
     getWakatimeMinutes(wakatime),
     getMaintainerDownloads(github.username),
   ]);

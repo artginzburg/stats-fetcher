@@ -15,4 +15,4 @@ jobs:
       - name: Run test
         run: npm run update
         env:
-          PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
