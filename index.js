@@ -3,7 +3,7 @@ import { writeFileSync } from 'fs';
 import getUserDownloads from '@artginzburg/github-user-downloads';
 import getMaintainerDownloads from '@artginzburg/npmstalk';
 import getWakatimeMinutes from './sources/wakatime';
-import dataJson from './data.json';
+import dataJson from './data.json' assert { type: 'json' };
 
 import { github, wakatime } from './config';
 
