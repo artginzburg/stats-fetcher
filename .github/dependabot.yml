@@ -2,11 +2,11 @@
 
 version: 2
 updates:
-  - package-ecosystem: 'npm'
+  - package-ecosystem: npm
     directory: '/'
     schedule:
-      interval: 'daily'
-  - package-ecosystem: 'github-actions'
+      interval: weekly
+  - package-ecosystem: github-actions
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: weekly
