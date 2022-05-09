@@ -9,5 +9,7 @@
     "ecmaVersion": 13,
     "sourceType": "module"
   },
-  "rules": {}
+  "rules": {
+    "import/no-unresolved": 0 // BUG?: this rule thinks that "got" is unresolved, though it resolves perfectly
+  }
 }
