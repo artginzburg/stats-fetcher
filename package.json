@@ -28,6 +28,6 @@
     "dotenv": "^16.0.3",
     "eslint": "^8.32.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.27.4"
+    "eslint-plugin-import": "^2.27.5"
   }
 }
