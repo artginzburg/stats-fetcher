@@ -16,7 +16,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --experimental-specifier-resolution=node test",
     "update": "node --no-warnings --experimental-specifier-resolution=node update",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "getHistory": "npx ts-node --esm ./scripts/get-history.mts"
   },
   "dependencies": {
     "@artginzburg/github-user-downloads": "^0.5.0",
