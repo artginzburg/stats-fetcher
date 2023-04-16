@@ -44,7 +44,7 @@ async function refreshData(currentData) {
 }
 
 function writeData(file, data) {
-  writeFileSync(file, JSON.stringify(data));
+  writeFileSync(file, JSON.stringify(data, undefined, 2));
 }
 
 export default async function updateData(path) {
