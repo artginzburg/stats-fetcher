@@ -24,7 +24,7 @@
     "got": "^12.6.0"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^5.59.6",
+    "@typescript-eslint/parser": "^5.59.7",
     "dotenv": "^16.0.3",
     "eslint": "^8.41.0",
     "eslint-config-airbnb-base": "^15.0.0",
