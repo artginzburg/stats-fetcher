@@ -21,7 +21,7 @@
   "dependencies": {
     "@artginzburg/github-user-downloads": "^0.5.0",
     "@artginzburg/npmstalk": "^1.4.0",
-    "got": "^12.6.0"
+    "got": "^13.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^5.59.6",
