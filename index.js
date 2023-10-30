@@ -3,7 +3,7 @@ import { writeFileSync } from 'fs';
 import getUserDownloads from '@artginzburg/github-user-downloads';
 import getMaintainerDownloads from '@artginzburg/npmstalk';
 import getWakatimeMinutes from './sources/wakatime';
-import getMustappUser from './sources/mustapp';
+import { getMustappUser } from './sources/mustapp';
 import dataJson from './data.json' assert { type: 'json' };
 
 import { sumArray } from './utils';
@@ -16,28 +16,40 @@ async function refreshData(currentData) {
     githubDownloads,
     wakatimeMinutes,
     npmDownloads,
-    mustappUser
-  ] = await Promise.all([
+    mustappUser,
+  ] = await Promise.allSettled([
     getUserDownloads(github.username),
     getWakatimeMinutes(wakatime),
     getMaintainerDownloads(github.username),
     getMustappUser(mustapp.username),
   ]);
 
-  if (githubDownloads?.total) {
-    data.githubDownloads = githubDownloads.total;
+  [
+    [githubDownloads, 'GitHub Downloads'],
+    [wakatimeMinutes, 'WakaTime Minutes'],
+    [npmDownloads, 'NPM Downloads'],
+    [mustappUser, 'MustApp User'],
+  ].forEach(([promiseSettledResult, name]) => {
+    console.log(`${name}: ${promiseSettledResult.status}`);
+    if (promiseSettledResult.status === 'rejected') {
+      console.error(`${name} fail reason:\n`, promiseSettledResult.reason);
+    }
+  });
+
+  if (githubDownloads.value?.total) {
+    data.githubDownloads = githubDownloads.value.total;
   }
 
-  if (wakatimeMinutes) {
-    data.wakatimeMinutes = wakatimeMinutes;
+  if (wakatimeMinutes.value) {
+    data.wakatimeMinutes = wakatimeMinutes.value;
   }
 
-  if (npmDownloads?.total) {
-    data.npmDownloads = npmDownloads.total;
+  if (npmDownloads.value?.total) {
+    data.npmDownloads = npmDownloads.value.total;
   }
 
-  if (mustappUser?.hours_spent) {
-    data.mustappHours = Object.values(mustappUser.hours_spent).reduce(sumArray);
+  if (mustappUser.value?.hours_spent) {
+    data.mustappHours = Object.values(mustappUser.value.hours_spent).reduce(sumArray);
   }
 
   return data;
