@@ -8,6 +8,7 @@ import dataJson from './data.json' assert { type: 'json' };
 
 import { sumArray } from './utils';
 import { github, wakatime, mustapp } from './config';
+import getUserContributors from './sources/github-contributors';
 
 async function refreshData(currentData) {
   const data = currentData;
@@ -17,11 +18,13 @@ async function refreshData(currentData) {
     wakatimeMinutes,
     npmDownloads,
     mustappUser,
+    githubContributors,
   ] = await Promise.allSettled([
     getUserDownloads(github.username),
     getWakatimeMinutes(wakatime),
     getMaintainerDownloads(github.username),
     getMustappUser(mustapp.username),
+    getUserContributors(github.username),
   ]);
 
   [
@@ -29,6 +32,7 @@ async function refreshData(currentData) {
     [wakatimeMinutes, 'WakaTime Minutes'],
     [npmDownloads, 'NPM Downloads'],
     [mustappUser, 'MustApp User'],
+    [githubContributors, 'GitHub Collaborators'],
   ].forEach(([promiseSettledResult, name]) => {
     console.log(`${name}: ${promiseSettledResult.status}`);
     if (promiseSettledResult.status === 'rejected') {

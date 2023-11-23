@@ -21,6 +21,7 @@
   "dependencies": {
     "@artginzburg/github-user-downloads": "^0.5.0",
     "@artginzburg/npmstalk": "^1.4.0",
+    "@octokit/rest": "^20.0.2",
     "got": "^13.0.0"
   },
   "devDependencies": {
