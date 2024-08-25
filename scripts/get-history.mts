@@ -3,11 +3,14 @@
 /* eslint-disable max-len */
 /* eslint-disable no-use-before-define */
 import { exec } from 'child_process';
+import { existsSync } from 'fs';
+import { mkdir, writeFile } from 'fs/promises';
+import path from 'path';
 import util from 'util';
 
 const execPromise = util.promisify(exec);
 
-getHistoryForStats();
+getHistoryForStatsAndWriteToStorage();
 
 // type Stat = {
 //   githubDownloads?: number;
@@ -16,11 +19,23 @@ getHistoryForStats();
 //   mustappHours?: number;
 // };
 
+export async function getHistoryForStatsAndWriteToStorage() {
+  const parsedStdout = await getHistoryForStats();
+
+  const dataDirectoryPath = path.join(path.dirname(import.meta.url.replace('file://', '')), 'data/');
+
+  if (!existsSync(dataDirectoryPath)) {
+    await mkdir(dataDirectoryPath);
+  }
+
+  await writeFile(path.join(dataDirectoryPath, './history.json'), JSON.stringify(parsedStdout, null, 2));
+}
+
 export async function getHistoryForStats() {
   const stdout = await getHistory('data.json');
   const parsedStdout = parseStdOutForGitLogOneFile(stdout);
 
-  console.log(parsedStdout);
+  // console.log(parsedStdout);
 
   return parsedStdout;
 }
