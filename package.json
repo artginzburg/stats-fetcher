@@ -13,21 +13,26 @@
   },
   "repository": "https://github.com/artginzburg/stats-fetcher",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --experimental-specifier-resolution=node test",
-    "update": "node --no-warnings --experimental-specifier-resolution=node update",
-    "lint": "eslint . --fix"
+    "test": "NODE_ENV=test npm run start",
+    "start": "tsx --no-deprecation ./src/index.ts",
+    "dev": "tsx --no-deprecation -r dotenv/config ./src/index.ts",
+    "lint": "eslint .",
+    "lint:ts": "tsc --noEmit"
   },
   "dependencies": {
     "@artginzburg/github-user-downloads": "^0.5.0",
     "@artginzburg/npmstalk": "^1.4.0",
-    "got": "^13.0.0"
+    "got": "^14.4.5",
+    "tsx": "^4.19.2"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^5.61.0",
-    "dotenv": "^16.4.5",
-    "eslint": "^8.57.0",
+    "@types/node": "^22.10.7",
+    "@typescript-eslint/parser": "^8.20.0",
+    "dotenv": "^16.4.7",
+    "eslint": "^9.18.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.29.1"
+    "eslint-plugin-import": "^2.31.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3"
   }
 }
