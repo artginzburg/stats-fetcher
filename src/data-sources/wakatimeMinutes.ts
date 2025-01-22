@@ -6,6 +6,7 @@ export const wakatimeMinutes = new DataSource('wakatimeMinutes', 'WakaTime Minut
   const result = await getWakatimeMinutes(config.wakatime);
   return result;
 });
+export default wakatimeMinutes;
 
 async function getWakatimeMinutes(url: string) {
   const svg = await got(url);

@@ -8,6 +8,7 @@ export const mustappHours = new DataSource('mustappHours', 'MustApp Hours', asyn
 
   return Object.values(result.hours_spent).reduce(sumArray);
 });
+export default mustappHours;
 
 const baseUrl = 'https://mustapp.com';
 const apiUrl = `${baseUrl}/api`;

@@ -1,23 +1,16 @@
-import { writeFile } from 'node:fs/promises';
+import { readdir, writeFile } from 'node:fs/promises';
 
-import type { DataSource } from './classes/DataSource';
-import { githubDownloads } from './data-sources/githubDownloads';
-import { mustappHours } from './data-sources/mustappHours';
-import { npmDownloads } from './data-sources/npmDownloads';
-import { wakatimeMinutes } from './data-sources/wakatimeMinutes';
-import { githubContributors } from './data-sources/githubContributors';
+import { DataSource } from './classes/DataSource';
 
 import dataJson from '../data.json' assert { type: 'json' };
+import { join } from 'node:path';
 
-const allDataSources = [
-  githubDownloads,
-  wakatimeMinutes,
-  npmDownloads,
-  mustappHours,
-  githubContributors,
-] satisfies DataSource[];
+const dataSourcesRelativePath = './data-sources/';
+const dataRelativePath = './data.json';
 
-updateData('data.json');
+const allDataSources = await getAllDataSources();
+
+updateData(dataRelativePath);
 
 type DataSourceName = (typeof allDataSources)[number]['name'];
 
@@ -43,4 +36,19 @@ async function refreshData(currentData: Partial<Record<DataSourceName, number>>)
 
 async function writeData(file: string, data: typeof dataJson) {
   await writeFile(file, `${JSON.stringify(data, undefined, 2)}\n`);
+}
+
+async function getAllDataSources() {
+  const { dirname } = import.meta;
+
+  const dirContents = await readdir(join(dirname, dataSourcesRelativePath));
+  const imported = await Promise.all(
+    dirContents.map(async (pathName) => {
+      const imported = await import(`${dataSourcesRelativePath}/${pathName}`);
+      const defaultExport = imported.default;
+      if (defaultExport instanceof DataSource) return defaultExport;
+      else throw new TypeError(`The default export of ${pathName} is not a ${DataSource.name}!`);
+    }),
+  );
+  return imported;
 }

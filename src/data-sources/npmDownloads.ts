@@ -6,3 +6,4 @@ export const npmDownloads = new DataSource('npmDownloads', 'NPM Downloads', asyn
   const result = await getMaintainerDownloads(config.github.username);
   return result.total;
 });
+export default npmDownloads;

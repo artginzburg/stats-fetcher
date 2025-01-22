@@ -12,6 +12,7 @@ export const githubContributors = new DataSource(
     return Object.keys(result).length;
   },
 );
+export default githubContributors;
 
 async function getUserContributors(username: string, auth = process.env['GITHUB_TOKEN']) {
   const { rest } = new Octokit({ auth });

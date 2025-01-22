@@ -6,3 +6,4 @@ export const githubDownloads = new DataSource('githubDownloads', 'GitHub Downloa
   const result = await getUserDownloads(config.github.username);
   return result.total;
 });
+export default githubDownloads;
