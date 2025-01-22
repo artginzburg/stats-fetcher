@@ -5,6 +5,7 @@ import { githubDownloads } from './data-sources/githubDownloads';
 import { mustappHours } from './data-sources/mustappHours';
 import { npmDownloads } from './data-sources/npmDownloads';
 import { wakatimeMinutes } from './data-sources/wakatimeMinutes';
+import { githubContributors } from './data-sources/githubContributors';
 
 import dataJson from '../data.json' assert { type: 'json' };
 
@@ -13,6 +14,7 @@ const allDataSources = [
   wakatimeMinutes,
   npmDownloads,
   mustappHours,
+  githubContributors,
 ] satisfies DataSource[];
 
 updateData('data.json');
