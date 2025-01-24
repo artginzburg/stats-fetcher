@@ -17,7 +17,8 @@
     "start": "tsx --no-deprecation ./src/index.ts",
     "dev": "tsx --no-deprecation -r dotenv/config ./src/index.ts",
     "lint": "eslint .",
-    "lint:ts": "tsc --noEmit"
+    "lint:ts": "tsc --noEmit",
+    "generate:history": "tsx ./scripts/get-history.ts"
   },
   "dependencies": {
     "@artginzburg/github-user-downloads": "^0.5.0",
