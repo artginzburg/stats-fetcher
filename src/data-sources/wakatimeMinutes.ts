@@ -10,8 +10,11 @@ export default wakatimeMinutes;
 
 async function getWakatimeMinutes(url: string) {
   const svg = await got(url);
-  const matchGroups = svg.body.match(/(?<hours>[0-9,]+) hrs (?<minutes>[0-9]+) mins/)?.groups;
+  const matchGroups = svg.body.match(/(?<hours>[0-9,]+) hrs( (?<minutes>[0-9]+) mins)?/)?.groups;
   if (!matchGroups) throw new Error('matchGroups is null');
 
-  return Number(matchGroups['hours']?.replaceAll(',', '')) * 60 + Number(matchGroups['minutes']);
+  return (
+    Number(matchGroups['hours']?.replaceAll(',', '') ?? 0) * 60 +
+    Number(matchGroups['minutes'] ?? 0)
+  );
 }
