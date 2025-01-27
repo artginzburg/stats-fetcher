@@ -31,7 +31,7 @@ importers:
         specifier: ^16.4.7
         version: 16.4.7
       eslint:
-        specifier: ^9.18.0
+        specifier: ^9.19.0
         version: 9.19.0
       eslint-plugin-import:
         specifier: ^2.31.0
