@@ -24,7 +24,7 @@
     "@artginzburg/github-user-downloads": "^0.5.0",
     "@artginzburg/npmstalk": "^1.4.1",
     "got": "^14.4.6",
-    "tsx": "^4.19.2"
+    "tsx": "^4.19.3"
   },
   "devDependencies": {
     "@types/node": "^22.13.5",
