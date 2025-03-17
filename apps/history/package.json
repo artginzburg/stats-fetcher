@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@linaria/core": "^6.2.0",
-    "@linaria/react": "^6.2.1",
+    "@linaria/react": "^6.3.0",
     "@wyw-in-js/babel-preset": "^0.5.5",
     "next": "15.2.2",
     "next-with-linaria": "^0.7.0",
