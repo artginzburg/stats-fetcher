@@ -46,8 +46,8 @@ importers:
   apps/history:
     dependencies:
       '@linaria/core':
-        specifier: ^6.2.0
-        version: 6.2.0
+        specifier: ^6.3.0
+        version: 6.3.0
       '@linaria/react':
         specifier: ^6.3.0
         version: 6.3.0(react@19.0.0)
@@ -539,10 +539,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
-
-  '@linaria/core@6.2.0':
-    resolution: {integrity: sha512-Ee+cwfhzhRM5X9rFogah3npw0OSqy80sJe/hlWIJxQD1WR6Zsbf+y78IlBPEzi6PvgoOiqdYtFjSUeWFqNVIDw==}
-    engines: {node: '>=16.0.0'}
 
   '@linaria/core@6.3.0':
     resolution: {integrity: sha512-fs1aQyX4DmJpeGMyobuSznAo/Y02+Q8vhm+c/jr2WHDmqKHEJpCqH2Mhu1End+SdiUvZIUgb4MNiZryWtZLD5g==}
@@ -2834,12 +2830,6 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
-
-  '@linaria/core@6.2.0':
-    dependencies:
-      '@wyw-in-js/processor-utils': 0.5.5
-    transitivePeerDependencies:
-      - supports-color
 
   '@linaria/core@6.3.0':
     dependencies:
