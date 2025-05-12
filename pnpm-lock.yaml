@@ -22,8 +22,8 @@ importers:
         version: 4.19.4
     devDependencies:
       '@types/node':
-        specifier: ^22.15.3
-        version: 22.15.3
+        specifier: ^22.15.17
+        version: 22.15.17
       '@typescript-eslint/parser':
         specifier: ^8.31.1
         version: 8.31.1(eslint@9.26.0)(typescript@5.8.3)
@@ -75,7 +75,7 @@ importers:
         version: 3.3.1
       '@types/node':
         specifier: ^22
-        version: 22.15.3
+        version: 22.15.17
       '@types/react':
         specifier: ^19
         version: 19.1.2
@@ -738,8 +738,8 @@ packages:
   '@types/jsonfile@6.1.4':
     resolution: {integrity: sha512-D5qGUYwjvnNNextdU59/+fI+spnwtTFmyQP0h+PfIOSkNfpU6AOICUOkm4i0OnSk+NyjdPJrxCDro0sJsWlRpQ==}
 
-  '@types/node@22.15.3':
-    resolution: {integrity: sha512-lX7HFZeHf4QG/J7tBZqrCAXwz9J5RD56Y6MpP0eJkka8p+K0RY/yBTW7CYFJ4VGCclxqOLKmiGP5juQc6MKgcw==}
+  '@types/node@22.15.17':
+    resolution: {integrity: sha512-wIX2aSZL5FE+MR0JlvF87BNVrtFWf6AE6rxSE9X7OwnVvoyCQjpzSRJ+M87se/4QCkCiebQAqrJ0y6fwIyi7nw==}
 
   '@types/ramda@0.29.3':
     resolution: {integrity: sha512-Yh/RHkjN0ru6LVhSQtTkCRo6HXkfL9trot/2elzM/yXLJmbLm2v6kJc8yftTnwv1zvUob6TEtqI2cYjdqG3U0Q==}
@@ -3306,7 +3306,7 @@ snapshots:
   '@types/fs-extra@11.0.1':
     dependencies:
       '@types/jsonfile': 6.1.4
-      '@types/node': 22.15.3
+      '@types/node': 22.15.17
 
   '@types/http-cache-semantics@4.0.4': {}
 
@@ -3316,9 +3316,9 @@ snapshots:
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 22.15.3
+      '@types/node': 22.15.17
 
-  '@types/node@22.15.3':
+  '@types/node@22.15.17':
     dependencies:
       undici-types: 6.21.0
 
