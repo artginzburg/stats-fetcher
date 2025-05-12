@@ -27,7 +27,7 @@
     "tsx": "^4.19.4"
   },
   "devDependencies": {
-    "@types/node": "^22.15.3",
+    "@types/node": "^22.15.17",
     "@typescript-eslint/parser": "^8.31.1",
     "dotenv": "^16.5.0",
     "eslint": "^9.26.0",
