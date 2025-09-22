@@ -23,7 +23,7 @@
   "dependencies": {
     "@artginzburg/github-user-downloads": "^0.5.0",
     "@artginzburg/npmstalk": "^1.4.1",
-    "got": "^14.4.7",
+    "got": "^14.4.9",
     "tsx": "^4.20.5"
   },
   "devDependencies": {
