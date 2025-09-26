@@ -23,11 +23,11 @@
   "dependencies": {
     "@artginzburg/github-user-downloads": "^0.5.0",
     "@artginzburg/npmstalk": "^1.4.1",
+    "@octokit/rest": "^22.0.0",
     "got": "^14.4.9",
     "tsx": "^4.20.5"
   },
   "devDependencies": {
-    "@octokit/rest": "^22.0.0",
     "@types/node": "^22.15.21",
     "@typescript-eslint/parser": "^8.42.0",
     "dotenv": "^16.5.0",
