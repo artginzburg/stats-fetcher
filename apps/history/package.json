@@ -16,7 +16,7 @@
     "next-with-linaria": "^0.8.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.0",
-    "recharts": "^2.15.3"
+    "recharts": "^3.2.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
