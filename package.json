@@ -21,8 +21,8 @@
     "generate:history": "tsx ./scripts/get-history.ts"
   },
   "dependencies": {
-    "@artginzburg/github-user-downloads": "^0.5.0",
-    "@artginzburg/npmstalk": "^1.4.1",
+    "@artginzburg/github-user-downloads": "^0.5.1",
+    "@artginzburg/npmstalk": "^1.4.2",
     "@octokit/rest": "^22.0.0",
     "got": "^14.4.9",
     "tsx": "^4.20.6"

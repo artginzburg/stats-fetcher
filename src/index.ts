@@ -1,6 +1,7 @@
 import { readdir, writeFile } from 'node:fs/promises';
 
 import { DataSource } from './classes/DataSource';
+import { withRetry } from './utils/withRetry';
 
 import dataJson from '../data.json' assert { type: 'json' };
 import { join } from 'node:path';
@@ -22,7 +23,7 @@ async function updateData(path: string) {
 async function refreshData(currentData: Partial<Record<DataSourceName, number>>) {
   const asyncFuntions = allDataSources.map(async (source) => {
     try {
-      const num = await source.getData();
+      const num = await withRetry(() => source.getData());
       currentData[source.name] = num;
       console.log(`${source.description}: success`);
     } catch (error) {
